@@ -1,3 +1,7 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+def intro():
+    """Introduction into the story
+    """
+
+def chalenge_one():
+    """The first round of the game with 2 options to choose between
+    """
