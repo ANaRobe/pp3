@@ -1,4 +1,23 @@
 import random
+import sys
+import time
+
+
+def slow_print(text):
+    """
+    This function allows the text to be displayed letter by letter using sys
+    import rather than a whole block of text - A time delay
+    added will apply at the end of each sentance for 1 second
+    unless "\n" is used.
+    """
+    for character in text:
+        sys.stdout.write(character)  # print each character - print it
+        sys.stdout.flush()  # display it
+
+        if character == "\n":
+            time.sleep(0.01)  # wait until until the next character
+        else:
+            time.sleep(0.06)  # 0.5 sec delay for the end of each sentance
 
 
 def guess_number():
@@ -10,13 +29,13 @@ def guess_number():
             print("Sorry! You lost")
             break
         else:
-            print(f"Congradulations!You've guesed the number{random_number}!")
-            print("You get acces to the next level")
-            print("The Kingdom's gates are opening...")
+            slow_print(f"Congradulations!You've guesed the number{random_number}!")
+            slow_print("You get acces to the next level")
+            slow_print("The Kingdom's gates are opening...")
             break
 
 
-def mad_lib():
+def create_phrase():
     print("Oh no! He fell down in the well")
     print("A scared magic frog transforms him in a fly to eat him")
     print("He escapes the well but as fly has one day to live")
@@ -28,36 +47,38 @@ def mad_lib():
     print("Looking handsome again!")
 
 
-def yes_or_no():
+def intro():
+    slow_print("The story begins in ancient times \n")
+    slow_print("There was Green Emperor, rulling over The Edge Of The World \n")
+    slow_print("He had one doughter and no son to inherit his kongdom \n")
+    slow_print("'But his brother had two boys! \n")
+    start_game()
+
+
+def start_game():
     while True:
-        choice = input("Type in: yes/ no: \n").lower().split()
+        print("Do you want to join the Adventure?")
+        choice = input("Type in: yes / no: \n").lower()
         if choice == "yes":
-            last_round()
+            round_one()
+            continue
         elif choice == "no":
-            mad_lib()
+            print("Cool! Thanks for passing by!")
             break
         else:
             input("Please type in correctly: \n").lower()
-            break
-
-
-def intro():
-    print("The story begins in ancient times")
-    print("There was Green Emperor, rulling over The Edge Of The World")
-    print("He had one doughter and no son to inherit his kongdom")
-    print("'But his brother had two boys!'")
-    round_one()
+            continue
 
 
 def round_one():
-    print("Choose which one of them should go and merry")
+    print("Choose which one of the boys should start the journey")
     while True:
         choice = input("Type in: oldest / youngest: \n").lower()
         if choice == "youngest":
             round_two()
         elif choice == "oldest":
             print("After long journey he stopped to drink water")
-            mad_lib()
+            create_phrase()
             last_round()
             break
         else:
@@ -93,21 +114,33 @@ def round_three():
             print("They wonder for long time until the Sparrow")
             print("tricks the boy to go down to a well to cool off")
             print("To spare his life, the Sparrow forces him to obey him")
-            yes_or_no()
-            last_round()
+            round_four()
         elif choice == "redman":
             print("Redman, an evel wisard transforms the Prince into a fly")
-            mad_lib()
+            create_phrase()
             last_round()
+            break
         else:
             input("Please type in correctly \n").lower()
 
 
+def round_four():
+    while True:
+        choice = input("Type in: yes / no: \n").lower()
+        if choice == "yes":
+            last_round()
+        elif choice == "no":
+            create_phrase()
+            last_round()
+        else:
+            input("Please type in correctly: \n").lower()
+
+
 def last_round():
-    print("After 3 months crossing the mountains and the seas ")
+    print("After 3 months crossing the mountains and the seas")
     print("he is finally in front of the kingdom's gate")
     print("To open it he need to guess a number between 1 and 3")
     guess_number()
 
 
-round_one()
+intro()
